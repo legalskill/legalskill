@@ -125,10 +125,10 @@ legalskill/
 | 微信公众号「律锥」（微信号：`legalskill`） | 社区动态、技能更新推送、深度文章 |
 | 微信 / QQ（`89930280`，备注 `github`） | 使用问题、Bug 反馈、联系作者 |
 | 邮箱 `89930280@qq.com` | 日常联系、材料发送 |
-| QQ频道（频道号：`pd89930280`） | 法律人日常交流、问题互助 |
-| QQ群（[群号：`8947858`](https://qm.qq.com/cgi-bin/qm/qr?k=-STRn36f7kPeiC4QYApdAlGd3XvXQxGi&jump_from=webapi&authKey=76jeHKErSd/BUsa6cwjRqBJS5OvEyz+Gb6kAdBsWn9n9XtfUGMIDXPgSuRbi9ko2)） | 社区即时讨论、使用交流 |
+| [QQ频道](https://pd.qq.com/s/970hmmfux?b=9)（频道号：`pd89930280`） | 法律人日常交流、问题互助 |
+| [QQ群](https://qm.qq.com/q/8947858)（群号：`8947858`） | 社区即时讨论、使用交流 |
 | [ima.copilot 法律技能知识库](https://ima.qq.com/wiki/?shareId=8138fdfd3f6c571966e2433946f437f8f8814548b738a2cd8ca9a80b7aed177c) | 即开即用的法律技能知识库 |
-| 孙律师个人公众号「孙律师」（微信号：`agilvshi`） | 执业思考、技术拆解、行业观察 |
+| 孙律师个人公众号「孙律师」（微信号：`AGILVSHI`） | 执业思考、技术拆解、行业观察 |
 
 <p align="center"><strong>律锥·legalskill</strong> 不仅开源法律技能，更开源一种安全、务实、可持续的 AI 工作方式。</p>
 
