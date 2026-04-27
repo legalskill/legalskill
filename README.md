@@ -126,7 +126,7 @@ legalskill/
 | 微信 / QQ（`89930280`，备注 `github`） | 使用问题、Bug 反馈、联系作者 |
 | 邮箱 `89930280@qq.com` | 日常联系、材料发送 |
 | QQ频道（频道号：`pd89930280`） | 法律人日常交流、问题互助 |
-| QQ群（群号：`8947858`） | 社区即时讨论、使用交流 |
+| QQ群（[群号：`8947858`](https://qm.qq.com/cgi-bin/qm/qr?k=-STRn36f7kPeiC4QYApdAlGd3XvXQxGi&jump_from=webapi&authKey=76jeHKErSd/BUsa6cwjRqBJS5OvEyz+Gb6kAdBsWn9n9XtfUGMIDXPgSuRbi9ko2)） | 社区即时讨论、使用交流 |
 | [ima.copilot 法律技能知识库](https://ima.qq.com/wiki/?shareId=8138fdfd3f6c571966e2433946f437f8f8814548b738a2cd8ca9a80b7aed177c) | 即开即用的法律技能知识库 |
 | 孙律师个人公众号「孙律师」（微信号：`agilvshi`） | 执业思考、技术拆解、行业观察 |
 
