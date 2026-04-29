@@ -12,7 +12,7 @@
 
 | 技能 | 简介 | 作者 | 许可 |
 |:-----|:-----|:-----|:-----|
-| [legal-consultation](./skill/legal-consultation) | 资深律师式法律咨询，适配 ima.copilot RAG，五阶段诊断 | 律锥·legalskill | CC BY-SA 4.0 |
+| [copilot-ima-legal-consultation](./skill/copilot-ima-legal-consultation) | 资深律师式法律咨询，适配 ima.copilot RAG，五阶段诊断 | 律锥·legalskill | CC BY-SA 4.0 |
 
 ## 社区精选
 

@@ -1,9 +1,9 @@
-name: legal-consultation
-version: "1.0.0"
+name: copilot-ima-legal-consultation
+version: "1.1.0"
 author: 律锥·legalskill
 license: CC BY-SA 4.0
 category: legal
-tags: [legal-consultation, contract-review, legal-tech, risk-assessment, dispute-resolution, rag-enhanced, tiered-reading, structured-citations, configurable, ima-note]
+tags: [legal-consultation, contract-review, legal-tech, risk-assessment, dispute-resolution, rag-enhanced, tiered-reading, structured-citations, anti-hallucination, configurable, ima-note]
 
 triggers:
   - "怎么办"
@@ -14,6 +14,39 @@ triggers:
   - "劳动仲裁"
   - "离婚财产"
   - "刑事风险"
+  - "欠钱不还"
+  - "借钱不还"
+  - "被起诉"
+  - "打官司"
+  - "维权"
+  - "赔偿"
+  - "欠薪"
+  - "拖欠工资"
+  - "工伤"
+  - "交通事故"
+  - "租房纠纷"
+  - "遗产纠纷"
+  - "继承"
+  - "离婚"
+  - "合同纠纷"
+  - "被骗"
+  - "法律咨询"
+  - "律师咨询"
+  - "法律问题"
+  - "违法解除"
+  - "公司开除"
+  - "调岗降薪"
+  - "不交社保"
+  - "竞业限制"
+  - "定金不退"
+  - "买到假货"
+  - "消费者权益"
+  - "房屋买卖"
+  - "股权纠纷"
+  - "合伙纠纷"
+  - "债务纠纷"
+  - "拆迁补偿"
+  - "行政罚款"
 
 not_for:
   - "正式法律意见书"
@@ -25,6 +58,10 @@ references:
     desc: 法律知识库档案与检索策略矩阵
   - file: colloquial-mapping.md
     desc: 口语→法言法语搜索词映射表
+  - file: legal-scenarios.md
+    desc: 法律场景分类体系与8大场景关键事实挖掘框架（含追问示例）
+  - file: output-templates.md
+    desc: 完整/简要双输出模板、填写规范、反幻觉标记规范与延伸引导规则
 
 knowledge_bases:
   - name: "法律库"

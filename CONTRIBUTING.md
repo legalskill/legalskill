@@ -14,7 +14,7 @@
 ### 方式一：提交新技能（PR）
 
 1. Fork 本仓库。
-2. 在 `skill/` 目录下新建技能文件夹，参考 [legal-consultation](./skill/legal-consultation) 的目录结构。
+2. 在 `skill/` 目录下新建技能文件夹，参考 [copilot-ima-legal-consultation](./skill/copilot-ima-legal-consultation) 的目录结构。
 3. 确保包含以下文件：
    - `SKILL.md`（头部标注 `license: CC BY-SA 4.0`，末尾含完整免责声明）
    - `skill.yaml`（标准化元数据）
