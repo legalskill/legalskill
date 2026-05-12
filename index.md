@@ -1,1 +1,1 @@
-test
+{% include_relative README.md %}
