@@ -63,7 +63,6 @@ legalskill/
 ├── skill/                         # 官方维护的法律技能
 │   └── tencent-ima-copilot-legal-consultation/        # 首发技能，可作为新技能模板
 │       ├── src/                   # 核心逻辑（环境无关）
-│       ├── adapters/              # ima / generic 双环境适配
 │       ├── SKILL.md               # 技能核心指令（含完整免责声明）
 │       ├── references/            # 知识资产（口语映射表、知识库档案）
 │       └── skill.yaml             # 标准化元数据
