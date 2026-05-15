@@ -69,6 +69,7 @@ legalskill/
 │       ├── skill.yaml                             # 标准化元数据
 │       ├── references/                            # 知识资产
 │       └── src/config.json                        # 可配置参数
+├── community_skill/                               # 社区精选技能（预留）
 ├── _config.yml                                     # GitHub Pages 配置
 ├── CNAME                                           # 自定义域名
 ├── CONTRIBUTING.md                                 # 贡献指南
