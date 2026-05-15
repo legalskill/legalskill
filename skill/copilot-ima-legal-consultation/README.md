@@ -206,6 +206,18 @@ ima.copilot · Claude.ai · Claude Code · API
 
 ---
 
+## 版本历史
+
+### v1.1.0（当前版本）
+- **新增**：反幻觉强制保障机制 — 法条引用须标注效力状态、13+25 项自查清单、输出前交叉核对铁律
+- **新增**：反幻觉标记规范
+- **优化**：风险提示统一增加 AI 生成声明 + 法条时效提醒 + 来源核验提醒
+
+### v1.0.0
+- 初始发布
+
+---
+
 ## 许可
 
 `SKILL.md` 及 `references/` 采用 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) 许可。
