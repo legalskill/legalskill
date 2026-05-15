@@ -49,7 +49,6 @@
 | 技能 | 简介 | 适用场景 |
 |:-----|:-----|:---------|
 | [tencent-ima-copilot-legal-consultation](./skill/tencent-ima-copilot-legal-consultation) | 资深律师式法律咨询，深度适配 ima.copilot 知识库 RAG，五阶段分步诊断，法条与案例均可溯源验证。ima.copilot 环境自动走 RAG 检索，非 ima.copilot 环境自动走联网检索。 | ima.copilot / Claude / API |
-| [skill-writing-assistant](./skill/skill-writing-assistant) | 技能编写与修改助手，提供创建和修改标准技能的完整指南与最佳实践 | ima.copilot / Claude / API |
 
 ### 社区精选技能
 

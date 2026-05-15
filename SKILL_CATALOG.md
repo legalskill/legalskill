@@ -13,7 +13,6 @@
 | 技能 | 简介 | 作者 | 许可 |
 |:-----|:-----|:-----|:-----|
 | [tencent-ima-copilot-legal-consultation](./skill/tencent-ima-copilot-legal-consultation) | 资深律师式法律咨询，适配 ima.copilot RAG，五阶段诊断 | 律锥·legalskill | CC BY-SA 4.0 |
-| [skill-writing-assistant](./skill/skill-writing-assistant) | 技能编写与修改助手，提供创建和修改标准技能的完整指南 | 律锥·legalskill | CC BY-SA 4.0 |
 
 ## 社区精选
 
