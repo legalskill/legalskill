@@ -48,7 +48,7 @@
 
 | 技能 | 简介 | 适用场景 |
 |:-----|:-----|:---------|
-| [legal-consultation](./skill/legal-consultation) | 资深律师式法律咨询，深度适配 ima.copilot 知识库 RAG，五阶段分步诊断，法条与案例均可溯源验证。ima.copilot 环境自动走 RAG 检索，非 ima.copilot 环境自动走联网检索。 | ima.copilot / Claude / API |
+| [tencent-ima-copilot-legal-consultation](./skill/tencent-ima-copilot-legal-consultation) | 资深律师式法律咨询，深度适配 ima.copilot 知识库 RAG，五阶段分步诊断，法条与案例均可溯源验证。ima.copilot 环境自动走 RAG 检索，非 ima.copilot 环境自动走联网检索。 | ima.copilot / Claude / API |
 
 ### 社区精选技能
 
@@ -61,7 +61,7 @@
 ```text
 legalskill/
 ├── skill/                         # 官方维护的法律技能
-│   └── legal-consultation/        # 首发技能，可作为新技能模板
+│   └── tencent-ima-copilot-legal-consultation/        # 首发技能，可作为新技能模板
 │       ├── src/                   # 核心逻辑（环境无关）
 │       ├── adapters/              # ima / generic 双环境适配
 │       ├── SKILL.md               # 技能核心指令（含完整免责声明）
@@ -111,7 +111,7 @@ legalskill/
 
 **律锥·legalskill** 欢迎所有法律人与开发者共建法律技能开源社区：
 
-- **贡献技能**：参考 `CONTRIBUTING.md` 和 [legal-consultation](./skill/legal-consultation) 的目录结构提交 PR。新技能须包含 `SKILL.md`（含 CC BY-SA 4.0 声明与完整免责声明）、代码文件及标准元数据 `skill.yaml`。
+- **贡献技能**：参考 `CONTRIBUTING.md` 和 [tencent-ima-copilot-legal-consultation](./skill/tencent-ima-copilot-legal-consultation) 的目录结构提交 PR。新技能须包含 `SKILL.md`（含 CC BY-SA 4.0 声明与完整免责声明）、代码文件及标准元数据 `skill.yaml`。
 - **推荐技能**：在 [GitHub Discussions](https://github.com/legalskill/legalskill/discussions/categories/ideas) 推荐优秀的外部技能，经审核后可收录至社区技能目录。
 - **反馈建议**：在 Issues 提出使用问题或新技能想法。
 - **成为维护者**：持续贡献高质量法律技能后，可申请核心维护资格。
