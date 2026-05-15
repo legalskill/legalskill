@@ -60,19 +60,24 @@
 
 ```text
 legalskill/
-├── skill/                         # 官方维护的法律技能
-│   └── tencent-ima-copilot-legal-consultation/        # 首发技能，可作为新技能模板
-│       ├── src/                   # 核心逻辑（环境无关）
-│       ├── SKILL.md               # 技能核心指令（含完整免责声明）
-│       ├── references/            # 知识资产（口语映射表、知识库档案）
-│       └── skill.yaml             # 标准化元数据
-├── community_skill/               # 社区精选技能（Git 子模块）
 ├── .github/
-├── LICENSE-CODE                   # Apache 2.0
-├── LICENSE-CONTENT                # CC BY-SA 4.0
+│   └── workflows/jekyll-gh-pages.yml
+├── skill/
+│   └── tencent-ima-copilot-legal-consultation/   # 首发技能
+│       ├── SKILL.md                               # 技能核心指令（含免责声明）
+│       ├── README.md                              # 技能说明
+│       ├── skill.yaml                             # 标准化元数据
+│       ├── references/                            # 知识资产
+│       └── src/config.json                        # 可配置参数
+├── _config.yml                                     # GitHub Pages 配置
+├── CNAME                                           # 自定义域名
+├── CONTRIBUTING.md                                 # 贡献指南
+├── index.md                                        # GitHub Pages 首页
+├── LICENSE-CODE                                    # Apache 2.0
+├── LICENSE-CONTENT                                 # CC BY-SA 4.0
 ├── README.md
-├── CONTRIBUTING.md
-└── SKILL_CATALOG.md                # 社区技能目录
+├── SKILL_CATALOG.md                                # 社区技能目录
+└── SKILL_TEMPLATE.md                               # 技能模板
 ```
 
 ---
