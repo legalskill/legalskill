@@ -1,0 +1,36 @@
+name: claw-agent-workspace
+version: "1.0.0"
+author: 律锥·legalskill https://www.legalskill.cn
+license: CC BY-SA 4.0
+category: tools
+tags: "claw, workspace, agent-bootstrap, skills-integration, dynamic-routing"
+
+triggers:
+  - "claw配置"
+  - "智能体配置"
+  - "引导文件"
+  - "工作区文件"
+  - "AGENTS.md"
+  - "SOUL.md"
+  - "配置 agent"
+  - "升级 agent"
+  - "创建智能体"
+  - "设置工作区"
+
+not_for:
+  - "不适用于非 Claw 平台的智能体管理"
+  - "不适用于 Claw 源码开发"
+  - "不适用于编写技能文件（应使用 skill-writing-assistant）"
+
+references:
+  - file: config-reference.md
+    desc: 配置字段完整参考
+  - file: soul-guide.md
+    desc: SOUL.md 人设编写指南
+
+compatibility:
+  - "适用于 OpenClaw 及同级别 Claw Agent 实现"
+  - ima.copilot
+  - Claude.ai
+  - Claude Code
+  - API

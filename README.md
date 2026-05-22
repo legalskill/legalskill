@@ -49,6 +49,7 @@
 | 技能 | 简介 | 适用场景 |
 |:-----|:-----|:---------|
 | [tencent-ima-copilot-legal-consultation](./skill/tencent-ima-copilot-legal-consultation) | 资深律师式法律咨询，深度适配 ima.copilot 知识库 RAG，五阶段分步诊断，法条与案例均可溯源验证。ima.copilot 环境自动走 RAG 检索，非 ima.copilot 环境自动走联网检索。 | ima.copilot / Claude / API |
+| [claw-agent-workspace](./skill/claw-agent-workspace) | Claw 智能体工作区引导管理，自动扫描技能目录生成动态路由注入 AGENTS.md、SOUL.md 等引导文件 | Claude Code / API |
 
 ### 社区精选技能
 
@@ -64,11 +65,12 @@ legalskill/
 │   └── workflows/jekyll-gh-pages.yml
 ├── skill/
 │   └── tencent-ima-copilot-legal-consultation/   # 首发技能
-│       ├── SKILL.md                               # 技能核心指令（含免责声明）
-│       ├── README.md                              # 技能说明
-│       ├── skill.yaml                             # 标准化元数据
-│       ├── references/                            # 知识资产
-│       └── src/config.json                        # 可配置参数
+│   │   ├── SKILL.md                               # 技能核心指令（含免责声明）
+│   │   ├── README.md                              # 技能说明
+│   │   ├── skill.yaml                             # 标准化元数据
+│   │   ├── references/                            # 知识资产
+│   │   └── scripts/config.json                    # 可配置参数
+│   └── claw-agent-workspace/                     # Claw 智能体工作区引导
 ├── community_skill/                               # 社区精选技能（预留）
 ├── _config.yml                                     # GitHub Pages 配置
 ├── CNAME                                           # 自定义域名

@@ -13,6 +13,7 @@
 | 技能 | 简介 | 作者 | 许可 |
 |:-----|:-----|:-----|:-----|
 | [tencent-ima-copilot-legal-consultation](./skill/tencent-ima-copilot-legal-consultation) | 资深律师式法律咨询，适配 ima.copilot RAG，五阶段诊断 | 律锥·legalskill | CC BY-SA 4.0 |
+| [claw-agent-workspace](./skill/claw-agent-workspace) | Claw 智能体工作区引导管理，动态路由注入 | 律锥·legalskill | CC BY-SA 4.0 |
 
 ## 社区精选
 
