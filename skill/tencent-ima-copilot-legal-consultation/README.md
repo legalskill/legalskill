@@ -134,7 +134,7 @@
 ## 目录结构
 
 ```
-legal-consultation/
+tencent-ima-copilot-legal-consultation/
 ├── SKILL.md              # 技能核心指令
 ├── skill.yaml            # 机器可读元数据
 ├── scripts/
@@ -213,4 +213,4 @@ ima.copilot · Claude.ai · Claude Code · API
 
 ---
 
-*作者：律锥·legalskill | 版本：1.1.0*
+*作者：[律锥·legalskill](https://www.legalskill.cn) | 版本：1.1.1*

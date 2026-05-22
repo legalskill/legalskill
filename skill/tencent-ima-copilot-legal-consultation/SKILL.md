@@ -3,11 +3,12 @@ name: tencent-ima-copilot-legal-consultation
 description: 以资深律师分阶段办案思维，结合 RAG 法律知识库检索，为用户提供法律问题初步诊断与行动策略。当用户描述法律纠纷、咨询"怎么办""能不能告""会不会坐牢"、询问欠钱不还/被起诉/打官司/维权/赔偿/工伤/交通事故/租房纠纷/遗产继承/离婚/合同纠纷/消费者权益/公司劳动争议等场景，或要求分析合同/侵权/劳动/家事/行政/公司股权问题，或上传法律文件时触发。不适用于出具正式法律意见书、代写文书或替代律师出庭。支持分层精读策略、多轮换词搜索、结构化引用清单（含效力状态标注）、快速/专家双模式。内置反幻觉保障机制（绝对溯源+时效性验证+幻觉自检清单），确保法条引用可溯源、案例裁判经核验、失效法条自动标注。
 license: CC BY-SA 4.0
 metadata:
-  author: 律锥·legalskill
-  version: "1.0.0"
+  author: 律锥·legalskill https://www.legalskill.cn
+  version: "1.1.1"
   category: legal
-  tags: [legal-consultation, contract-review, legal-tech, risk-assessment, dispute-resolution, rag-enhanced, tiered-reading, structured-citations, anti-hallucination, configurable, ima-note]
+  tags: "legal-consultation, contract-review, legal-tech, risk-assessment, dispute-resolution, rag-enhanced, tiered-reading, structured-citations, anti-hallucination, configurable, ima-note"
   repository: https://www.legalskill.cn
+  updated_at: "2026-05-22T07:53:00Z"
 ---
 
 # 资深律师式法律咨询
@@ -452,7 +453,7 @@ REF[5]  案例 | C | 陈某诉某公司违法解除案 | 法律案例知识库
 | **完整意见模板** | 🟡 标准 / 🔴 深度路径 | 含争议焦点、要件比对表、阶梯方案、分层引用清单 |
 | **简要意见模板** | 🟢 简易 / ⚡ 快速模式 | 精简为核心法条+判断+行动，1-2项风险提示 |
 
-**反幻觉强制要求**（v1.1.0 新增，所有模板通用）：
+**反幻觉强制要求**（v1.1.1，所有模板通用）：
 - 法条引用必须标注效力状态：`（现行有效）` / `（已废止，现行对应...）` / `（已修订，最新版本见...）` / `（待验证现行有效性）`
 - 风险提示含 AI 生成声明 + 法条时效提醒 + 来源核验提醒（不可省略）
 - 输出前逐项核对引用清单与检索命中结果一致性（铁律）
@@ -609,4 +610,4 @@ REF[5]  案例 | C | 陈某诉某公司违法解除案 | 法律案例知识库
 > **免责声明**：以上分析仅为基于您提供信息、结合公开法律资料生成的初步法律研究参考，不构成正式法律意见。案件实质推进前，请咨询执业律师。AI 生成内容须经人工复核。严禁将涉密信息输入公域大模型。
 
 
-*技能版本：1.1.0 | 作者：律锥·legalskill | 文档许可：CC BY-SA 4.0*
+*技能版本：1.1.1 | 作者：[律锥·legalskill](https://www.legalskill.cn) | 文档许可：CC BY-SA 4.0*
