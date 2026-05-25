@@ -5,7 +5,7 @@ license: CC BY-SA 4.0
 compatibility: "适用于 OpenClaw 及同级别 Claw Agent 实现"
 metadata:
   author: 律锥·legalskill https://www.legalskill.cn
-  version: "1.0.0"
+  version: "1.1.0"
   category: tools
   tags: "claw, workspace, agent-bootstrap, skills-integration, dynamic-routing"
   documentation: https://agents.md
@@ -110,6 +110,29 @@ Claw 是一个嵌入式智能体运行时，每个网关对应一个智能体进
   └─ 都没有？→ 向用户确认目标工作区和技能范围
 ```
 
+扫描后判定是否进入单技能融合策略。满足以下任一条件即触发：
+
+1. 用户明确提到"单技能"
+2. 用户指定了具体的技能目录（如"用 `D:\legalskill\claw-agent-workspace\` 这个技能"），意图明确指向单一技能
+3. 扫描发现工作区/专家仅有 1 个绑定技能
+
+触发单技能后，进入**现存绑定检测**（兜底，不可跳过）：
+
+- 目标工作区无 AGENTS.md → 新建，直接走精简管道
+- 有 AGENTS.md → 读取并检测现有绑定状态：
+  - 已用 CORE_SKILL_BLOCK（多技能格式）？
+  - 已用 Tools & Skills 表格注册？
+  - 已有技能数量（N_old）vs 用户新指定/扫描到的技能（N_new）？
+  - **存在冲突** → 暂停，列出冲突详情，请求用户确认后再继续
+
+冲突清单（任一命中即暂停）：
+- N_old >= 2 但用户要求单技能 → 降级冲突（丢失多技能路由）
+- N_old == 1 但技能路径/名称与用户指定不一致 → 覆盖冲突（旧技能被替换）
+- 已有表格注册 vs 用户指定外部路径 → 注册格式冲突（相对 vs 绝对路径）
+- 用户指定技能目录不在现有绑定中 → 新增冲突（可能变为多技能）
+
+检测通过（无冲突或用户已确认）→ 进入单技能融合策略，详见[单技能融合策略](#单技能融合策略)章节。未触发（多技能或未指定）→ 使用完整管道。
+
 扫描技能目录时采集以下信息：
 
 | 检测项 | 执行动作 |
@@ -151,6 +174,7 @@ Claw 是一个嵌入式智能体运行时，每个网关对应一个智能体进
 - **引导文件**：新建用模板改写、修改用 L1/L2 分支流程。详见下方[工作流](#工作流-1)的各步骤。
 - **含脚本的技能**：第 0 步检测到 `scripts/` 目录的，AGENTS.md 中必须写入规则3的 5 条脚本铁律。
 - **核心技能触发块注入**（强制）：第 0 步扫描到任一技能时，必须读取 `assets/CORE_SKILL_BLOCK.md`，用扫描得到的关键词、模块路由填充占位符，生成动态触发块注入到 AGENTS.md 中。新建时插入到合适位置，修改已有文件时 L1 精准替换、L2 完整重写时包含。多技能时在 TOOLS.md 中写入跨技能路由表（技能名 | 触发关键词 | 入口文件）。
+  - **豁免**：进入单技能融合策略时，跳过 CORE_SKILL_BLOCK 注入，改用 `assets/AGENTS.md` 的 `{{SKILL_TABLE}}` 表格注册。
 
 ### 4. 结构验证
 - 配置文件：使用诊断命令验证。
@@ -231,6 +255,13 @@ claw config set 智能体.默认.模型 '<json>' --strict-json --merge
 
 SOUL.md 采用"通用人格基座 + 技能感知叠加层"双层架构：
 
+**单技能场景（进入单技能融合策略时）：**
+- 不启用双层架构。直接从技能 SKILL.md 提取人格描述（身份、个性、语气、边界），融合写入 SOUL.md。
+- 不读取 `SOUL_SKILL_LAYER.md`，不追加叠加层。
+- 修改已有工作区时，若 SOUL.md 当前是双层架构但变为单技能 → L1 移除叠加层，将技能人格融入基座。
+
+**多技能场景：**
+
 **新建工作区：**
 1. 先写入 `assets/SOUL.md`（通用人格基座——纯人格，不含技能内容）。
 2. 如果工作区绑定了技能：
@@ -285,6 +316,56 @@ SOUL.md 采用"通用人格基座 + 技能感知叠加层"双层架构：
 
 如果需要了解完整配置字段的精确语义和默认值，读取 `references/config-reference.md`。
 
+## 单技能融合策略
+
+当工作区/专家仅绑定一个技能时（触发条件见 Step 0 决策树），走精简管道而非完整的多技能管道。核心区别如下：
+
+### SOUL 融合模式
+
+跳过"通用人格基座 + 技能感知叠加层"双层架构。直接从技能的 `SKILL.md` 中提取身份、个性、语气、边界等描述，融合写入单一 `SOUL.md`。不读取 `assets/SOUL_SKILL_LAYER.md`，不追加叠加层。
+
+**示例**：技能 `claw-agent-workspace` 的 SKILL.md 中描述了"动态管理 Claw 系列智能体的工作区引导文件"——单技能 agent 的 SOUL.md 直接以此为"我是谁"。
+
+### AGENTS.md 表格注册
+
+不使用 CORE_SKILL_BLOCK（关键词路由表对单技能无意义）。改用 `assets/AGENTS.md` 模板中 `{{SKILL_TABLE}}` 占位符填充简单表格，配合毯式必读规则：
+
+**技能在工作区内**（如 `skills/claw-agent-workspace/SKILL.md`）：
+
+```
+| Skill | Purpose |
+|-------|---------|
+| `skills/claw-agent-workspace/SKILL.md` | 动态管理 Claw 智能体工作区引导文件... |
+```
+
+**技能在外部路径**（如 `D:\legalskill\claw-agent-workspace\SKILL.md`）：
+
+```
+| Skill | Purpose |
+|-------|---------|
+| `D:\legalskill\claw-agent-workspace\SKILL.md` | 动态管理 Claw 智能体工作区引导文件... |
+```
+
+配合毯式规则：`MANDATORY: Before starting ANY task, read and follow all SKILL.md files listed above.`
+
+### 跳过 CORE_SKILL_BLOCK
+
+单技能时不需要关键词路由表，不注入 `CORE_SKILL_BLOCK`。`assets/CORE_SKILL_BLOCK.md` 模板保留（多技能仍需使用），但单技能管道不调用。
+
+### 外部路径技能处理
+
+当技能不在工作区 `skills/` 子目录下，而是外部独立路径时：
+
+- AGENTS.md 中技能路径写**绝对路径**
+- 若外部技能含 `scripts/`：路径推导从外部技能目录推导。AGENTS.md 中写入脚本铁律时，路径格式为 `<外部技能绝对路径>/scripts/<脚本名>`
+- 若外部技能含 `config.py`：声明"执行前读取外部技能目录下的配置获取运行时参数"
+- 其他约束（脚本铁律、安全红线等）与工作区内技能完全一致
+
+### 与多技能管道的切换
+
+- 单技能 → 多技能：当工作区新增第二个技能时，自动升级为完整管道（CORE_SKILL_BLOCK + 双层 SOUL + TOOLS.md 跨技能路由表）
+- 多技能 → 单技能：需用户明确确认降级（因会丢失现有多技能路由表）。触发"降级冲突"，暂停请求确认。
+
 ## 可用模板
 
 本技能在 `assets/` 目录下提供以下默认模板，创建新文件时使用：
@@ -300,13 +381,16 @@ SOUL.md 采用"通用人格基座 + 技能感知叠加层"双层架构：
 | `assets/USER.md` | 用户档案模板 | 创建 USER.md |
 | `assets/IDENTITY.md` | 智能体身份记录 | 首次引导时创建 |
 | `assets/HEARTBEAT.md` | 心跳检查清单 | 创建 HEARTBEAT.md |
+| `assets/MEMORY.md` | 长期记忆容器模板（中文，含加载规则摘要） | 创建 MEMORY.md |
 
 使用模板时：
 1. 读取 `assets/<模板名>` 获取默认内容
 2. 根据用户的具体偏好改写
 3. 写入工作区对应文件路径
 
-## 备份清理
+## 备份与临时文件
+
+`scratch/` 目录存放开发过程中的临时产物（`.bak` 备份、测试数据等），与技能运行无关。Agent 不会自动执行该目录下的任何文件。
 
 每次 L2 深度模式操作会生成 `.bak-YYYYMMDD-HHMM` 备份文件。长期积累会占用空间并对 LLM 上下文造成干扰（备份文件可能被误读）。
 
@@ -366,4 +450,4 @@ claw config schema    # 打印配置规范
 
 > **免责声明**：以上内容由 AI 辅助生成，仅供参考，具体实施前请结合实际情况进行专业判断。严禁将涉密信息输入公域大模型。
 
-*技能版本：1.0.0 | 作者：[律锥·legalskill](https://www.legalskill.cn) | 文档许可：CC BY-SA 4.0*
+*技能版本：1.1.1 | 作者：[律锥·legalskill](https://www.legalskill.cn) | 文档许可：CC BY-SA 4.0*

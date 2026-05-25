@@ -1,5 +1,6 @@
 <!-- SOUL_SKILL_LAYER.md - 技能感知叠加层模板 -->
 <!-- 由 claw-agent-workspace 动态填充后追加到目标工作区 SOUL.md -->
+<!-- 仅在多技能工作区使用。单技能时跳过此文件，技能人格直接写入 SOUL.md -->
 
 ## 我的专业领域
 

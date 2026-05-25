@@ -1,5 +1,5 @@
 name: claw-agent-workspace
-version: "1.0.0"
+version: "1.1.1"
 author: 律锥·legalskill https://www.legalskill.cn
 license: CC BY-SA 4.0
 category: tools
@@ -16,11 +16,15 @@ triggers:
   - "升级 agent"
   - "创建智能体"
   - "设置工作区"
+  - "单技能"
+  - "技能注册"
+  - "外部技能路径"
 
 not_for:
   - "不适用于非 Claw 平台的智能体管理"
   - "不适用于 Claw 源码开发"
   - "不适用于编写技能文件（应使用 skill-writing-assistant）"
+  - "不适用于已有完整多技能路由表的工作区降级"
 
 references:
   - file: config-reference.md
