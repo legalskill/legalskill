@@ -450,4 +450,4 @@ claw config schema    # 打印配置规范
 
 > **免责声明**：以上内容由 AI 辅助生成，仅供参考，具体实施前请结合实际情况进行专业判断。严禁将涉密信息输入公域大模型。
 
-*技能版本：1.1.1 | 作者：[律锥·legalskill](https://www.legalskill.cn) | 文档许可：CC BY-SA 4.0*
+*技能版本：1.1.0 | 作者：[律锥·legalskill](https://www.legalskill.cn) | 文档许可：CC BY-SA 4.0*
