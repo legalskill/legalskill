@@ -9,7 +9,7 @@ metadata:
   category: tools
   tags: "claw, workspace, agent-bootstrap, skills-integration, dynamic-routing"
   documentation: https://agents.md
-  updated_at: "2026-05-26T03:10:00Z"
+  updated_at: "2026-05-26T13:45:00Z"
 ---
 
 # Claw 工作区管理

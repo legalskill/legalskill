@@ -33,8 +33,5 @@ references:
     desc: SOUL.md 人设编写指南
 
 compatibility:
-  - "适用于 OpenClaw 及同级别 Claw Agent 实现"
-  - ima.copilot
-  - Claude.ai
-  - Claude Code
-  - API
+  - Qclaw
+  - OpenClaw
