@@ -64,23 +64,27 @@ legalskill/
 ├── .github/
 │   └── workflows/jekyll-gh-pages.yml
 ├── skill/
-│   └── tencent-ima-copilot-legal-consultation/   # 首发技能
-│   │   ├── SKILL.md                               # 技能核心指令（含免责声明）
-│   │   ├── README.md                              # 技能说明
-│   │   ├── skill.yaml                             # 标准化元数据
-│   │   ├── references/                            # 知识资产
-│   │   └── scripts/config.json                    # 可配置参数
+│   ├── tencent-ima-copilot-legal-consultation/   # 法律咨询技能
+│   │   ├── SKILL.md
+│   │   ├── README.md
+│   │   ├── skill.yaml
+│   │   ├── references/
+│   │   └── scripts/
 │   └── claw-agent-workspace/                     # Claw 智能体工作区引导
-├── community_skill/                               # 社区精选技能（预留）
-├── _config.yml                                     # GitHub Pages 配置
-├── CNAME                                           # 自定义域名
-├── CONTRIBUTING.md                                 # 贡献指南
-├── index.md                                        # GitHub Pages 首页
-├── LICENSE-CODE                                    # Apache 2.0
-├── LICENSE-CONTENT                                 # CC BY-SA 4.0
+│       ├── SKILL.md
+│       ├── README.md
+│       ├── skill.yaml
+│       ├── references/
+│       └── assets/
+├── _config.yml                                   # GitHub Pages 配置
+├── CNAME                                         # 自定义域名
+├── CONTRIBUTING.md                               # 贡献指南
+├── index.md                                      # GitHub Pages 首页
+├── LICENSE-CODE                                  # Apache 2.0
+├── LICENSE-CONTENT                               # CC BY-SA 4.0
 ├── README.md
-├── SKILL_CATALOG.md                                # 社区技能目录
-└── SKILL_TEMPLATE.md                               # 技能模板
+├── SKILL_CATALOG.md                              # 社区技能目录
+└── SKILL_TEMPLATE.md                             # 技能模板
 ```
 
 ---
