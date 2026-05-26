@@ -2,12 +2,12 @@
   <h1 align="center">⚖️ 律锥·legalskill</h1>
   <p align="center"><strong>法律技能开源社区</strong> — 法律人的 AI 实战赋能与合规护航开源技能社区</p>
   <p align="center">
-    <a href="#-使命锥处囊中脱颖而出">使命</a> ·
-    <a href="#-行业背景">背景</a> ·
-    <a href="#-法律技能">技能</a> ·
-    <a href="#-技能目录">目录</a> ·
-    <a href="#-许可">许可</a> ·
-    <a href="#-参与">参与</a>
+    <a href="#使命锥处囊中脱颖而出">使命</a> ·
+    <a href="#行业背景">背景</a> ·
+    <a href="#法律技能">技能</a> ·
+    <a href="#项目结构">目录</a> ·
+    <a href="#许可">许可</a> ·
+    <a href="#参与">参与</a>
   </p>
 </p>
 
