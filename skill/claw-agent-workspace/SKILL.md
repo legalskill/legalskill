@@ -2,14 +2,14 @@
 name: claw-agent-workspace
 description: 动态管理 Claw 系列智能体（含 OpenClaw 及同级别 Claw Agent 实现）的工作区引导文件。自动扫描关联技能目录，提取关键词和模块路由，生成动态"核心技能触发块"注入 AGENTS.md，按需写入脚本铁律和技能感知叠加层。当用户提到"claw""智能体配置""引导文件""工作区文件""AGENTS.md""SOUL.md"或"升级 agent""配置 agent"时使用。
 license: CC BY-SA 4.0
-compatibility: "适用于 OpenClaw 及同级别 Claw Agent 实现"
+compatibility: "适用于 OpenClaw、Qclaw 及同级别 Claw Agent 实现"
 metadata:
   author: 律锥·legalskill https://www.legalskill.cn
   version: "1.1.0"
   category: tools
   tags: "claw, workspace, agent-bootstrap, skills-integration, dynamic-routing"
   documentation: https://agents.md
-  updated_at: "2026-05-22T13:19:00Z"
+  updated_at: "2026-05-26T03:10:00Z"
 ---
 
 # Claw 工作区管理
