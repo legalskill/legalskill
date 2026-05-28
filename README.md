@@ -140,6 +140,7 @@ legalskill/
 | [QQ群](https://qm.qq.com/q/8947858)（群号：`8947858`） | 社区即时讨论、使用交流 |
 | [ima.copilot 法律技能知识库](https://ima.qq.com/wiki/?shareId=8138fdfd3f6c571966e2433946f437f8f8814548b738a2cd8ca9a80b7aed177c) | 即开即用的法律技能知识库 |
 | 孙律师个人公众号「孙律师」（微信号：`AGILVSHI`） | 执业思考、技术拆解、行业观察 |
+| [孙律师 · 技能聚合页](https://lawskill.cn) | 个人技能展示与知识库入口 |
 
 <p align="center"><strong>律锥·legalskill</strong> 不仅开源法律技能，更开源一种安全、务实、可持续的 AI 工作方式。</p>
 
