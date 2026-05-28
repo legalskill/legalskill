@@ -57,34 +57,67 @@
 
 ---
 
+## 🤖 WorkBuddy 专家 Agent
+
+律锥·legalskill 同时提供 **WorkBuddy 专用 Agent 包**，将法律技能打包为即装即用的智能专家，直接嵌入 WorkBuddy 工作台。
+
+| Agent | 简介 | 绑定技能 |
+|:------|:-----|:---------|
+| [IMA法律咨询专家](./workbuddy/workbuddy-ima-copilot-legal-consultation) | 基于 IMA 知识库的法律咨询专家，五阶段分步诊断，法条与案例可溯源验证。 | [tencent-ima-copilot-legal-consultation](./skill/tencent-ima-copilot-legal-consultation) |
+
+**与技能的关系**：Agent 包内嵌了技能的副本，保持与源技能同步。技能是唯一真相源，Agent 是分发载体。
+
+---
+
+## 🏗️ 三层体系
+
+律锥·legalskill 采用三层架构，单向关联：
+
+```
+skill/                    技能源 —— SKILL.md + skill.yaml（唯一真相）
+    ↓ 同步
+workbuddy/                Agent 包 —— plugin.json + agents/ + skills/
+    ↓ 链接
+lawskill.cn               展示页 —— 知识库 + 技能 + Agent 统一入口
+```
+
+---
+
 ## 📁 项目结构
 
 ```text
 legalskill/
 ├── .github/
 │   └── workflows/jekyll-gh-pages.yml
-├── skill/
-│   ├── tencent-ima-copilot-legal-consultation/   # 法律咨询技能
+├── skill/                                              # 技能层
+│   ├── tencent-ima-copilot-legal-consultation/         # 法律咨询技能
 │   │   ├── SKILL.md
 │   │   ├── README.md
 │   │   ├── skill.yaml
 │   │   ├── references/
 │   │   └── scripts/
-│   └── claw-agent-workspace/                     # Claw 智能体工作区引导
+│   └── claw-agent-workspace/                           # Claw 智能体工作区引导
 │       ├── SKILL.md
 │       ├── README.md
 │       ├── skill.yaml
 │       ├── references/
 │       └── assets/
-├── _config.yml                                   # GitHub Pages 配置
-├── CNAME                                         # 自定义域名
-├── CONTRIBUTING.md                               # 贡献指南
-├── index.md                                      # GitHub Pages 首页
-├── LICENSE-CODE                                  # Apache 2.0
-├── LICENSE-CONTENT                               # CC BY-SA 4.0
+├── workbuddy/                                          # Agent 层
+│   └── workbuddy-ima-copilot-legal-consultation/       # IMA法律咨询专家
+│       ├── .codebuddy-plugin/plugin.json
+│       ├── agents/
+│       ├── skills/                                     # 技能内嵌副本
+│       ├── scripts/                                    # 安装/校验/同步脚本
+│       └── README.md
+├── _config.yml                                         # GitHub Pages 配置
+├── CNAME                                               # 自定义域名
+├── CONTRIBUTING.md                                     # 贡献指南
+├── index.md                                            # GitHub Pages 首页
+├── LICENSE-CODE                                        # Apache 2.0
+├── LICENSE-CONTENT                                     # CC BY-SA 4.0
 ├── README.md
-├── SKILL_CATALOG.md                              # 社区技能目录
-└── SKILL_TEMPLATE.md                             # 技能模板
+├── SKILL_CATALOG.md                                    # 社区技能目录
+└── SKILL_TEMPLATE.md                                   # 技能模板
 ```
 
 ---
