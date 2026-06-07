@@ -21,7 +21,7 @@ gaokao-quick-advisor — 高考志愿填报助手（全国普通版 v1.0.0）
   --json: JSON 结果
 """
 
-import argparse, json, os, sys, subprocess, tempfile
+import argparse, json, os, sys, subprocess, tempfile, urllib.request, urllib.error
 from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -46,18 +46,37 @@ def is_ima_platform():
     return False
 
 
+def _ima_api_post(endpoint, payload, timeout=15):
+    """IMA API POST 请求，凭证仅通过 HTTP 头传递，不经过 shell/命令行。"""
+    client_id = os.environ.get('IMA_OPENAPI_CLIENTID', '')
+    api_key = os.environ.get('IMA_OPENAPI_APIKEY', '')
+    data = json.dumps(payload).encode('utf-8')
+    req = urllib.request.Request(
+        endpoint,
+        data=data,
+        headers={
+            'ima-openapi-clientid': client_id,
+            'ima-openapi-apikey': api_key,
+            'Content-Type': 'application/json'
+        },
+        method='POST'
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode('utf-8'))
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode('utf-8', errors='replace')
+        raise Exception(f"HTTP {e.code}: {error_body[:200]}")
+    except urllib.error.URLError as e:
+        raise Exception(f"网络错误: {e.reason}")
+
+
 def get_first_personal_kb_id():
     try:
-        result = subprocess.run(
-            ['curl', '-s', '-X', 'POST',
-             'https://ima.qq.com/openapi/wiki/v1/search_knowledge_base',
-             '-H', f'ima-openapi-clientid: {os.environ.get("IMA_OPENAPI_CLIENTID", "")}',
-             '-H', f'ima-openapi-apikey: {os.environ.get("IMA_OPENAPI_APIKEY", "")}',
-             '-H', 'Content-Type: application/json',
-             '-d', json.dumps({"query": "", "cursor": "", "limit": 10})],
-            capture_output=True, text=True, timeout=15
+        data = _ima_api_post(
+            'https://ima.qq.com/openapi/wiki/v1/search_knowledge_base',
+            {"query": "", "cursor": "", "limit": 10}
         )
-        data = json.loads(result.stdout)
         personal_kbs = []
         for kb in data.get('data', {}).get('info_list', []):
             if kb.get('base_type') == '个人知识库' and kb.get('role_type') in ('创建者', '协作成员', '管理员'):
@@ -75,27 +94,16 @@ def ensure_gaokao_kb_subscribed():
     if not is_ima_platform():
         return False
     try:
-        result = subprocess.run(
-            ['curl', '-s', '-X', 'POST',
-             'https://ima.qq.com/openapi/wiki/v1/search_knowledge_base',
-             '-H', f'ima-openapi-clientid: {os.environ.get("IMA_OPENAPI_CLIENTID", "")}',
-             '-H', f'ima-openapi-apikey: {os.environ.get("IMA_OPENAPI_APIKEY", "")}',
-             '-H', 'Content-Type: application/json',
-             '-d', json.dumps({"query": "", "cursor": "", "limit": 50})],
-            capture_output=True, text=True, timeout=15
+        data = _ima_api_post(
+            'https://ima.qq.com/openapi/wiki/v1/search_knowledge_base',
+            {"query": "", "cursor": "", "limit": 50}
         )
-        data = json.loads(result.stdout)
         for kb in data.get('data', {}).get('info_list', []):
             if kb.get('kb_id') == IMA_KB_ID:
                 return True
-        subprocess.run(
-            ['curl', '-s', '-X', 'POST',
-             'https://ima.qq.com/openapi/wiki/v1/join_knowledge',
-             '-H', f'ima-openapi-clientid: {os.environ.get("IMA_OPENAPI_CLIENTID", "")}',
-             '-H', f'ima-openapi-apikey: {os.environ.get("IMA_OPENAPI_APIKEY", "")}',
-             '-H', 'Content-Type: application/json',
-             '-d', json.dumps({"knowledge_base_id": IMA_KB_ID, "name": "高考志愿"})],
-            capture_output=True, text=True, timeout=15
+        _ima_api_post(
+            'https://ima.qq.com/openapi/wiki/v1/join_knowledge',
+            {"knowledge_base_id": IMA_KB_ID, "name": "高考志愿"}
         )
         return True
     except Exception as e:
@@ -108,28 +116,17 @@ def ensure_legal_kb_subscribed():
     if not is_ima_platform():
         return False
     try:
-        result = subprocess.run(
-            ['curl', '-s', '-X', 'POST',
-             'https://ima.qq.com/openapi/wiki/v1/search_knowledge_base',
-             '-H', f'ima-openapi-clientid: {os.environ.get("IMA_OPENAPI_CLIENTID", "")}',
-             '-H', f'ima-openapi-apikey: {os.environ.get("IMA_OPENAPI_APIKEY", "")}',
-             '-H', 'Content-Type: application/json',
-             '-d', json.dumps({"query": "", "cursor": "", "limit": 50})],
-            capture_output=True, text=True, timeout=15
+        data = _ima_api_post(
+            'https://ima.qq.com/openapi/wiki/v1/search_knowledge_base',
+            {"query": "", "cursor": "", "limit": 50}
         )
-        data = json.loads(result.stdout)
         for kb in data.get('data', {}).get('info_list', []):
             if kb.get('kb_id') == LEGAL_KB_ID:
                 print(f"[OK] 已订阅 {LEGAL_KB_NAME}", file=sys.stderr)
                 return True
-        subprocess.run(
-            ['curl', '-s', '-X', 'POST',
-             'https://ima.qq.com/openapi/wiki/v1/join_knowledge',
-             '-H', f'ima-openapi-clientid: {os.environ.get("IMA_OPENAPI_CLIENTID", "")}',
-             '-H', f'ima-openapi-apikey: {os.environ.get("IMA_OPENAPI_APIKEY", "")}',
-             '-H', 'Content-Type: application/json',
-             '-d', json.dumps({"knowledge_base_id": LEGAL_KB_ID, "name": LEGAL_KB_NAME})],
-            capture_output=True, text=True, timeout=15
+        _ima_api_post(
+            'https://ima.qq.com/openapi/wiki/v1/join_knowledge',
+            {"knowledge_base_id": LEGAL_KB_ID, "name": LEGAL_KB_NAME}
         )
         print(f"[OK] 已自动订阅 {LEGAL_KB_NAME}", file=sys.stderr)
         return True
@@ -230,6 +227,12 @@ def main():
     parser.add_argument("--json", default=None, help="输出 JSON 结果路径")
     args = parser.parse_args()
 
+    # Windows 控制台 GBK 编码无法输出 emoji，强制 UTF-8
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
     # --action 分支（独立动作，不依赖分数/省份参数）
     if args.action == "legal-kb":
         ok = ensure_legal_kb_subscribed()
@@ -239,7 +242,7 @@ def main():
         print("[FAIL] 请提供有效的 --score", file=sys.stderr)
         return 1
 
-    # 验证省份（支持城市名如"苏州""深圳"的自动映射）
+    # 验证省份（Agent 已将城市名转为省名，此处直接校验）
     pid = province_id(args.province)
     if pid not in PROVINCES:
         print(f"[FAIL] 不支持的省份: {args.province}。支持 31 省/市/自治区。", file=sys.stderr)
@@ -345,23 +348,60 @@ IMA_KB_ID = "AEaapGGng0Ql9WrI1oMOmF0wJ0daWzpNFULr3Qkgtpk="
 LEGAL_KB_ID = "QqH2FL2WO286JS_hyJ6KdbHTIEmleMeYMaQl4NRIWew"
 LEGAL_KB_NAME = "法律知识库"
 
-FULL_GUIDE_TIPS = f"""
-[提示] 还想了解更多？
-  1. 这个分数能报哪些具体专业？就业前景如何？
-  2. 推荐院校的优势学科和考研方向是什么？
-  3. 微信 89930280 获取专家深度个性报告。
----
-*Powered by 律锥·高考志愿技能 | [legalskill.cn](https://www.legalskill.cn)*
-"""
-
-BRIEF_GUIDE_TIPS = f"""
-[提示] 还想了解更多？
-  1. 这个分数能报哪些具体专业？就业前景如何？
-  2. 推荐院校的优势学科和考研方向是什么？
-  3. 微信 89930280 获取专家深度个性报告。
-"""
-
 KB_FOOTER_MD = f"了解更多高考志愿知识和专家深度报告请访问 [IMA高考志愿知识库](<{IMA_KB_URL}>)。"
+
+
+# === 动态对话引导问题（Agent 会话提醒用，不进入报告正文） ===
+
+def dynamic_guide_questions(score=None, province=None, category=None,
+                             major_interest=None, family_context=None):
+    """根据用户背景动态生成 2 条追问问题（尾行由 LLM 自由发挥）。
+
+    参数：
+        score: 高考分数
+        province: 省份名称
+        category: 选科（物理类/历史类）
+        major_interest: 用户表达的专业意向（如'计算机''法学'），可选
+        family_context: 家庭背景线索（如'父母在深圳''农村家庭'），可选
+
+    返回：
+        list[str] — 2 条追问问题，不含尾行。尾行由 Agent 根据上下文自由生成。
+    """
+    questions = []
+
+    # --- 专业意向（最高优先级） ---
+    if major_interest:
+        questions.append(
+            f"想了解{province or '目标省份'}{major_interest}专业在各推荐院校中的实力和录取趋势吗？"
+        )
+        questions.append(
+            f"{major_interest}专业的考研方向、就业前景和行业薪资如何？"
+        )
+
+    # --- 家庭背景个性问题 ---
+    elif family_context:
+        questions.append(
+            f"结合您提到的「{family_context}」，需要进一步筛选更适合的院校和城市吗？"
+        )
+        questions.append("需要对比几所目标院校的学费、住宿和地域生活成本吗？")
+
+    # --- 通用引导（无特殊上下文） ---
+    else:
+        if score and score >= 600:
+            questions.append(
+                "高分段考生在选择时，优先选学校层次还是选专业实力更合适？"
+            )
+        elif score and score >= 500:
+            questions.append(
+                "中分段考生如何平衡学校层次与专业实力？是否需要对比具体院校？"
+            )
+        elif score:
+            questions.append(
+                "当前分数段有哪些性价比高的院校值得重点关注？"
+            )
+        questions.append("需要对比两所具体院校的优势学科和毕业生去向吗？")
+
+    return questions
 
 
 # === 报告生成 ===
@@ -460,7 +500,7 @@ def _build_summary(result):
 
 
 def generate_full_md(result, rank_api, lines_api, province, category, year):
-    """完整 Markdown 报告（全量学校 + KB footer + 引导提示）"""
+    """完整 Markdown 报告（全量学校 + KB footer）"""
     score = result['score']
     rank = result['rank']
     pool = result['pool_size']
@@ -477,13 +517,11 @@ def generate_full_md(result, rank_api, lines_api, province, category, year):
 
     lines.extend(_build_summary(result))
     lines.append(KB_FOOTER_MD)
-    lines.append("")
-    lines.append(FULL_GUIDE_TIPS)
     return '\n'.join(lines)
 
 
 def generate_brief_md(result, rank_api, lines_api, province, category, year, max_per_tier=5):
-    """简化 Markdown 简报（每档 top N + 引导提示）"""
+    """简化 Markdown 简报（每档 top N）"""
     score = result['score']
     rank = result['rank']
     pool = result['pool_size']
@@ -499,7 +537,6 @@ def generate_brief_md(result, rank_api, lines_api, province, category, year, max
         lines.extend(_build_tier_table(tiers, key, max_schools=max_per_tier))
 
     lines.extend(_build_summary(result))
-    lines.append(BRIEF_GUIDE_TIPS)
     return '\n'.join(lines)
 
 

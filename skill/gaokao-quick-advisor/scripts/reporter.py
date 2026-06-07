@@ -159,8 +159,6 @@ tr:hover {{ background: {LIGHT_BG}; }}
     <h2>💡 说明</h2>
     <ol style="padding-left: 20px; line-height: 2.2; font-size: 14px;">
         <li>此报告展示{show_count}所学校参考（冲/稳/保 = {chong_n}/{wen_n}/{bao_n}），按{vmode}模式列出，概率从低到高排列。</li>
-        <li>想了解具体专业录取分和就业前景？可进一步提供专业方向查询。</li>
-        <li>需要专家深度个性报告？微89930280 获取。</li>
     </ol>
 </div>
 <div class='section data-source'>
