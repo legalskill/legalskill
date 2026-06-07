@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment / secrets
+.env
+token/
+*.token
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tools directory (outside repo but safety net)
+tools/

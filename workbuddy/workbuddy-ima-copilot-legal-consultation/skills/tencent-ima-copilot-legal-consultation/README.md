@@ -213,4 +213,39 @@ ima.copilot · Claude.ai · Claude Code · API
 
 ---
 
+## 发布与版本管理
+
+> 完整流程文档：`references/publishing.md`
+
+### 三步发布
+
+```
+1. 修改源文件 → 更新版本号（skill.yaml + skills-mapping.json 两处同步）
+2. python scripts/sync_skills.py --sync  → 同步到 WorkBuddy Agent 副本
+   （脚本位于 D:\legalskill\repo-domain-publish-manager\scripts\）
+3. Git commit + push（master/main 分支即发布源）
+```
+
+### JSON 配置速查
+
+本技能涉及 **7 个 JSON 文件**，分布在三层架构中：
+
+| 文件 | 位置 | 谁维护 |
+|------|------|--------|
+| `skill.yaml` | 技能源根目录 | 人工（触发词、版本号） |
+| `config.json` | `scripts/config.json` | 人工（搜索强度、模式开关） |
+| `skills-mapping.json` | `D:\github\`（仓库外） | 人工（技能→Agent 映射） |
+| `plugin.json` | WorkBuddy 插件根目录 | 人工（显示名、快捷提问） |
+| `_meta.json` | WorkBuddy 副本内 | SkillHub 自动（发布元数据） |
+| `_skillhub_meta.json` | WorkBuddy 副本内 | IDE 自动（安装元数据） |
+| `vercel.json` | lawskill 仓库 | 人工（短链重定向） |
+
+### 关键规则
+
+- **版本号变更必须同时更新两处**：`skill.yaml` 的 `version` + `skills-mapping.json` 对应 skill 的 `version`
+- **`_meta.json` 和 `_skillhub_meta.json` 是保留文件**，`sync_skills.py` 不会删除/覆盖它们
+- **GitHub 即发布源**：推送到 master 后 SkillHub 可直接引用对应版本目录
+
+---
+
 *作者：[律锥·legalskill](https://www.legalskill.cn) | 版本：1.1.1*

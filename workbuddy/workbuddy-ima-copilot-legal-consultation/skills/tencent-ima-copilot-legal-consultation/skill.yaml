@@ -62,6 +62,8 @@ references:
     desc: 法律场景分类体系与8大场景关键事实挖掘框架（含追问示例）
   - file: output-templates.md
     desc: 完整/简要双输出模板、填写规范、反幻觉标记规范与延伸引导规则
+  - file: publishing.md
+    desc: 发布流程与JSON配置手册——7个JSON文件完整说明、标准发布步骤、sync_skills.py工作原理
 
 knowledge_bases:
   - name: "法律库"
