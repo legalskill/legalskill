@@ -1,26 +1,26 @@
 {
-  "name": "workbuddy-ima-copilot-legal-consultation",
-  "version": "1.0.0",
-  "description": "IMA-powered legal consultation expert bound to workbuddy-ima-copilot-legal-consultation skill, providing structured five-phase legal analysis with multi-round RAG search, tiered reading, and anti-hallucination verification",
+  "name": "legalskill-legal-consultation",
+  "version": "2.0.0",
+  "description": "Legal consultation expert bound to legalskill-legal-consultation skill, providing structured five-phase legal analysis with multi-round RAG search, tiered reading, and anti-hallucination verification",
   "author": {
     "name": "LegalSkill Community",
     "email": ""
   },
-  "agents": ["./agents/workbuddy-ima-copilot-legal-consultation.md"],
-  "skills": ["./skills/tencent-ima-copilot-legal-consultation"],
+  "agents": ["./agents/legalskill-legal-consultation.md"],
+  "skills": ["."],
   "expertType": "agent",
-  "agentName": "workbuddy-ima-copilot-legal-consultation",
+  "agentName": "legalskill-legal-consultation",
   "displayName": {
-    "en": "IMA Legal Consultation Expert",
-    "zh": "IMA法律咨询专家"
+    "en": "Legal Consultation Expert",
+    "zh": "律锥法律咨询专家"
   },
   "profession": {
     "en": "Legal Consultation Expert",
     "zh": "法律咨询专家"
   },
   "displayDescription": {
-    "en": "Professional legal consultation powered by IMA knowledge base, following five-phase workflow with multi-round RAG search, tiered reading, and anti-hallucination verification.",
-    "zh": "基于IMA知识库的五阶段法律咨询专家，涵盖多轮RAG检索、分层精读、反幻觉验证与阶梯式解决方案。"
+    "en": "Describe your legal issue and get structured analysis: viability, legal basis, risks, and step-by-step solutions.",
+    "zh": "说出你的法律问题，帮你理清：能不能告、依据在哪、风险多大、怎么一步步解决。"
   },
   "avatar": "avatars/expert.png",
   "categoryId": "11-SecurityCompliance",
@@ -28,7 +28,7 @@
     "zh": "帮我分析一下合同纠纷中违约金过高的认定标准和最新裁判规则",
     "en": "Analyze the criteria and latest judicial rules on excessive liquidated damages in contract disputes"
   },
-  "plugin": "workbuddy-ima-copilot-legal-consultation",
+  "plugin": "legalskill-legal-consultation",
   "tags": [
     { "en": "Legal Search", "zh": "法律检索" },
     { "en": "Case Analysis", "zh": "案例分析" },
